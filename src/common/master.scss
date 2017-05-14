@@ -1,0 +1,25 @@
+// common
+@import "./navigation/navigation.scss";
+@import "./header/header.scss";
+
+// import modules
+@import "../gallery/gallery.scss";
+@import "../home/home.scss";
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pontano Sans', sans-serif;
+}
+
+.page {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

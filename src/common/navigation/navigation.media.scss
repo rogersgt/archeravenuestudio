@@ -1,0 +1,34 @@
+@import "../variables.scss";
+
+@media (max-width: 1080px) {
+  #navigation {
+    bottom: 2vh;
+    ul {
+      width: 40%;
+      margin: 0 30%;
+      li {
+        display: block;
+        width: 100%;
+        margin: 1% 0;
+        background-color: $transBlack;
+      }
+    }
+  }
+  .active {
+    background-color: $transWhite !important;
+    color: black !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #navigation {
+    bottom: 0;
+    ul {
+      width: 90%;
+      margin: 0 5%;
+      li {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@media (max-width: 1362px) {
+  .header {
+    li {
+      &:nth-child(3) {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1275px) {
+  .header {
+    li {
+      &:nth-child(2) {
+        width: 33%;
+      }
+      &:nth-child(3) {
+        width: 17%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1126px) {
+  .header {
+    li {
+      &:nth-child(3) {
+        font-size: .9rem;
+        padding-bottom: 1.6%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1080px) {
+  .header {
+    background-color: black;
+    li {
+      &:nth-child(2) {
+        width: 46%;
+        img {
+          width: 15%;
+        }
+      }
+      &:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+}
