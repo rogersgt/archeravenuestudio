@@ -3,30 +3,32 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import attachFastClick from 'fastclick';
 import ElementUI from 'element-ui';
+import $ from 'jquery';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(ElementUI);
+Vue.use(() => { window.$ = window.jQuery = $; });
 
 const routes = [
   {
     path: '/',
-    component: require('./home/home.vue'),
+    component: require('./components/home/home.vue'),
     name: 'home'
    },
   {
     path: '/gallery',
-    component: require('./gallery/gallery.vue'),
+    component: require('./components/gallery/gallery.vue'),
     name: 'gallery'
   },
   {
     path: '/engineers',
-    component: require('./engineers/engineers.vue'),
+    component: require('./components/engineers/engineers.vue'),
     name: 'engineers'
   },
   {
     path: '/contact',
-    component: require('./contact/contact.vue'),
+    component: require('./components/contact/contact.vue'),
     name: 'contact'
   }
 ];
