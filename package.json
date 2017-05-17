@@ -8,9 +8,8 @@
   },
   "scripts": {
     "build:dev": "watchify -p browserify-hmr -t [ babelify --presets [ es2015 ] ] -t [ vueify ] -e src/app.js -o dist/index.js",
-    "files": "rm dist/assets/* && cp src/index.html dist/index.html && node tasks.js",
-    "start": "npm run style & npm run build:dev & npm run files & cd dist && serve",
-    "style": "node-sass src/components/common/master.scss dist/style.css && node-sass src/components/common/master.scss dist/style.css -w"
+    "files": "cp src/index.html dist/index.html & node tasks.js",
+    "start": "npm run files & npm run build:dev & cd dist && serve"
   },
   "author": "",
   "license": "ISC",

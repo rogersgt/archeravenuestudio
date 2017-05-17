@@ -39,7 +39,7 @@ const router = new VueRouter({
   history: true
 });
 
-router.push('/');
+// router.push('/');
 
 // router.beforeEach(() => {
 //   window.scrollTo(0, 0)

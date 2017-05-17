@@ -3,7 +3,7 @@
 
   #navigation {
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 1.2%;
     width: 100%;
     position: absolute;
     z-index: 25;
@@ -20,10 +20,10 @@
         padding: 1% 0;
         text-align: center;
         color: white;
-        text-shadow: 0 0 .1rem black, 0 0 .5rem black;
         border-radius: .5rem;
         border: .2rem solid white;
         font-family: 'Strait', sans-serif;
+        text-shadow: 0 0 .3rem black 0 0 .6rem black;
         &:hover {
           cursor: pointer;
           text-shadow: 0 0 .5rem white;

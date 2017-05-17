@@ -1,7 +1,7 @@
 <template>
 <div class="page">
     <div class="block">
-        <el-carousel height="100vh" arrow="always" :interval="1000000">
+        <el-carousel height="100vh" arrow="always" :interval="10000">
             <el-carousel-item class="image" v-for="item in pictures" height="100vh" :style="{ 'background-image' : 'url(' + item + ')' }">
             </el-carousel-item>
         </el-carousel>
@@ -17,10 +17,10 @@ export default {
     data: function() {
         return {
             pictures: [
-                'assets/live-room1.png',
-                'assets/controlroom2.png',
-                'assets/drums.png',
-                'assets/keys.png'
+                'assets/live-room1.jpg',
+                'assets/booth.jpg',
+                'assets/drums.jpg',
+                'assets/keys.jpg'
             ]
         };
     }

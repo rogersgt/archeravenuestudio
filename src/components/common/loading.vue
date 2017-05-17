@@ -16,33 +16,32 @@
     }
 </style>
 <template>
-    <div class="loading">
+    <div class="loading" v-if="loading">
           <i class="el-icon-loading"></i>
     </div>
 </template>
 <script>
     export default {
         created: function() {
-          $(window).on('load', () => {
-              this.hideWheel();
-              this.loading = false;
-          });
-
-          // navigating to another page does not reload the window
-          // let self = this;
-        // const route = self.$route.name;
-          if (this.loading) this.hideWheel();
+            this.hideWheel();
       },
       data: function() {
           return {
               loading: true
           };
       },
+      props: ['windowLoad'],
       methods: {
           hideWheel: function() {
-              console.log('loaded');
+              if(this.windowLoad) {
+                  $(window).on('load', () => {
+                    this.delayOff();
+                  });
+              } else this.delayOff();
+          },
+          delayOff: function() {
               setTimeout(() => {
-                  $('.loading').css('display', 'none');
+                  this.loading = false;
               }, 1500);
           }
       }

@@ -3,7 +3,7 @@
   .home {
     width: 100%;
     height: 100vh;
-    background-image: url('assets/controlroom1.2.png');
+    background-image: url('assets/control_room_side.jpg');
     background-size: cover;
     background-position: bottom;
     h4 {
@@ -12,9 +12,9 @@
       font-size: 1rem;
       letter-spacing: .3rem;
       margin-top: 0;
-      text-shadow: 0 0 .4rem white;
+      text-shadow: 0 0 .4rem white, 0 0 .5rem black, 0 0 .6rem black;
     }
-  } 
+  }
 
   #logo {
     margin: 0;
@@ -27,6 +27,7 @@
         width: 34%;
         text-align: right;
         img {
+          margin-top: 1%;
           width: 25%;
         }
       }
@@ -51,18 +52,21 @@
       <li><h1>RCHER AVENUE STUDIO</h1></li>
     </ul>
     <h4>Columbia, SC</h4>
-    <navigation></navigation>
     <loading></loading>
+    <navigation window-load="true"></navigation>
+   <media></media>
 </div>
 </template>
 <script>
   import navigation from '../common/navigation/navigation.vue';
   import loading from '../common/loading.vue';
+  import media from '../common/socialMedia.vue';
 
   export default {
     components: {
       navigation: navigation,
-      loading: loading
+      loading: loading,
+      media: media
     },
     methods: {
       fadeIn: () => {

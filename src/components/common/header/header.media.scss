@@ -32,6 +32,12 @@
   }
 }
 
+@media(min-width: 1081px) {
+  .header li:nth-child(1) h1 {
+    padding-left: 25%;
+  }
+}
+
 @media (max-width: 1080px) {
   .header {
     background-color: black;
