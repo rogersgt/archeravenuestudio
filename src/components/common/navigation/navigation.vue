@@ -7,7 +7,7 @@
     width: 100%;
     position: absolute;
     z-index: 25;
-    bottom: 8vh;
+    bottom: 5vh;
     ul {
       margin: 0;
       padding: 0;

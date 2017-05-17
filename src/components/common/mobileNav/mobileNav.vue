@@ -101,9 +101,15 @@
       },
       goContact: function () {
         this.$router.push('contact');
+      },
+      thenClose: function() {
+        setTimeout(() => {
+          if (this.closeQuick) this.open = false;
+        }, 1000);
       }
     },
     created: function() {
+      $(document).ready(() => this.thenClose());
       const self = this;
       const route = self.$route.name;
       switch(route) {
@@ -132,6 +138,6 @@
         gallery: false
       };
     },
-    props: ['startOpen']
+    props: ['startOpen', 'closeQuick']
   }
 </script>
