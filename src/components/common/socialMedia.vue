@@ -7,7 +7,7 @@
         position: fixed;
         z-index: 25;
         top: 13%;
-        right: 2%;
+        right: 1%;
         transition-duration: 1s;
         -webkit-transition-duration: 1s;
         li {
