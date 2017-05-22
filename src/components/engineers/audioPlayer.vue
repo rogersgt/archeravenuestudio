@@ -47,6 +47,9 @@
                 ]
             };
         },
+        beforeDestroy: function() {
+            this.allTracksOff();
+        },
         methods: {
             play: function(track) {
                 if (track.audio.paused) track.audio.play();
@@ -62,6 +65,14 @@
                     track.audio.play();
                 }
                 track.isPlaying = true;
+            },
+            allTracksOff: function() {
+                this.tracks.map((track) => {
+                    if (track.isPlaying) {
+                        track.audio.pause();
+                        track.isPlaying = false;
+                    }
+                });
             }
         }
     }
