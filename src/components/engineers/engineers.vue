@@ -1,5 +1,8 @@
 <style lang="scss">
 @import "../common/variables.scss";
+.background { // for music player
+    .el-collapse-item__content { background-color: black; }
+}
     .engineers {
         width: 100%;
         height: 100vh;
@@ -79,10 +82,10 @@
                 font-size: 1rem;
             }
         }
-        // .eng img:hover {
-        //     opacity: 1;
-        //     filter: grayscale(0%);
-        // }
+        .engineers .eng img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
         .engineers {
             padding-top: 5.5%;
             overflow-y: scroll;
@@ -96,10 +99,27 @@
                 overflow-y: auto;
                 overflow-x: auto;
                 height: auto;
+                padding-bottom: 0;
+                img {
+                    margin-bottom: 0;
+                    margin-top: 0;
+                }
                 img:hover { opacity: 1; }
+                img, .el-collapse {
+                    margin-left: 0;
+                    margin-right: 0;
+                    width: 100%;
+                }
+                h4 {
+                    margin-top: 2%;
+                    margin-bottom: 2%;
+                }
+                .el-collapse-item__header { padding-left: 0; }
             }
             .second {
                 margin-top: 0;
+                padding-top: 0;
+                margin-bottom: 5%;
             }
         }
     }
@@ -128,7 +148,7 @@
                     </el-collapse-item>
             </el-collapse>
             <el-collapse accordion>
-                <el-collapse-item title="Sample Tracks">
+                <el-collapse-item class="background" title="Sample Tracks">
                     <player></player>
                 </el-collapse-item>
             </el-collapse>

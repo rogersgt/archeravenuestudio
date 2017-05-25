@@ -30,6 +30,12 @@
             margin: 0 6%;
         }
     }
+    @media(max-width: 1080px) {
+        #socialMedia {
+            width: 12%;
+            margin-right: -18%;
+        }
+    }
 </style>
 <template>
     <ul id="socialMedia">
