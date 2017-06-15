@@ -176,12 +176,14 @@
             </el-collapse>
         </li>
         <media></media>
-        <navigation start-open="true" close-quick="true"></navigation>
+        <!-- <dynamic-nav></dynamic-nav> -->
+       <navigation start-open="true" close-quick="true"></navigation>
     </ul>
 </template>
 
 <script>
 import navigation from '../common/mobileNav/mobileNav.vue';
+import dynaNav from '../common/dynamicNav/dynamicNav.vue';
 import header from '../common/header/header.vue';
 import media from '../common/socialMedia.vue';
 import player from './audioPlayer.vue';
@@ -192,7 +194,8 @@ export default {
         navigation: navigation,
         h: header,
         media: media,
-        player: player
+        player: player,
+        dynamicNav: dynaNav
     },
     data: function() {
         return {

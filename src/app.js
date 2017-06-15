@@ -27,6 +27,11 @@ const routes = [
     name: 'engineers'
   },
   {
+    path: '/blog',
+    component: require('./components/blog/blog.vue'),
+    name: 'blog'
+  },
+  {
     path: '/contact',
     component: require('./components/contact/contact.vue'),
     name: 'contact'
