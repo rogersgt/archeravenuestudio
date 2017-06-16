@@ -1,5 +1,6 @@
 <style lang="scss">
   @import "../common/variables.scss";
+  @import "../common/footer.scss"; // should probably be somewhere else...
   .home {
     width: 100%;
     height: 100vh;

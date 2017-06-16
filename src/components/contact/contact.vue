@@ -13,17 +13,16 @@
   }
   .contact {
     margin: 0;
-    padding: 0;
+    padding: 5% 0 0 0;
     width: 100%;
     height: 100vh;
     top: 0;
-    position: fixed;
     background-image: url('assets/control_room_side.jpg');
     background-size: cover;
     background-position: center;
     form {
       width: 76%;
-      margin: 5% 12%;
+      margin: 0 12%;
       padding: 1.8% 0;
       background-color: $transWhite;
       box-shadow: 0 0 .4rem black;
@@ -71,6 +70,7 @@
     cursor: pointer;
   }
   @media(max-width: 1080px) {
+    .contact { padding-top: 0; }
     .contact form {
       margin: 10% 0;
       width: 100%;
@@ -168,8 +168,12 @@
              return this.badMessage = true;
           }
           console.log(this.email);
+          console.log(process.env.EMAIL_API);
           this.clicked = true;
         }
+      },
+      post: function(msg) {
+
       },
       watchEmail: function() { this.badEmailOne = false; },
       watchConfirm: function() { this.badEmailTwo = false; },

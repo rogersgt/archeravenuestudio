@@ -6,7 +6,6 @@
     .engineers {
         width: 100%;
         height: 100vh;
-        position: fixed;
         top: 0;
         margin: 0;
         padding: 0 0 5% 0;
@@ -21,9 +20,11 @@
             vertical-align: top;
             padding: 2.4% 0 5% 0;
             border-radius: .1rem;
-            height: 86vh;
+            height: 84vh;
             overflow-y: scroll;
             overflow-x: hidden;
+            z-index: 5;
+            position: relative;
             h4 {
                 text-align: center;
                 color: white;
@@ -124,7 +125,13 @@
         }
     }
     @media(max-width: 1007px) {
-        .engineers { padding-top: 5%;}
+        .engineers {
+            padding-top: 5%;
+            padding-bottom: 0;
+            .second {
+                margin-bottom: 0;
+            }
+        }
     }
 </style>
 <template lang="html">

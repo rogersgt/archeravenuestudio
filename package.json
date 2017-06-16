@@ -8,13 +8,15 @@
   },
   "scripts": {
     "build:dev": "watchify -p browserify-hmr -t [ babelify --presets [ es2015 ] ] -t [ vueify ] -e src/app.js -o dist/index.js",
+    "build:prod": "NODE_ENV='production' browserify-hmr -t [ bbabelify --presets [ es2015] ] -t [ vueify ] -t [ envify ] -e src/app.js -o dist/index.js",
     "files": "cp src/index.html dist/index.html & node tasks.js",
-    "start": "npm run files & npm run build:dev & cd dist && serve"
+    "start": "NODE_ENV='development' API=$(cat src/config/.env | jq '.API') npm run files & npm run build:dev & cd dist && serve"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "element-ui": "^1.2.4",
+    "envify": "^4.0.0",
     "fastclick": "^1.0.6",
     "jquery": "^3.1.1",
     "vue": "^2.2.2",
@@ -29,7 +31,7 @@
     "babelify": "^7.3.0",
     "browserify": "^14.1.0",
     "browserify-hmr": "^0.3.5",
-    "node-sass": "^4.5.2",
+    "node-sass": "^4.5.3",
     "vueify": "^9.4.1",
     "watchify": "^3.9.0"
   }
