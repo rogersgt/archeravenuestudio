@@ -13,7 +13,7 @@
       font-size: 1rem;
       letter-spacing: .3rem;
       margin-top: 0;
-      text-shadow: 0 0 .4rem white, 0 0 .5rem black, 0 0 .6rem black;
+      text-shadow: 0 0 .6rem black;
     }
   }
 

@@ -19,7 +19,7 @@
             display: inline-block;
             font-size: 1.4rem;
             a img {
-                width: 8%;
+                width: 10%;
                 vertical-align: bottom;
             }
             &:nth-child(3) {
@@ -34,11 +34,18 @@
     }
 }
 
+@media(max-width: 1290px) {
+    #foot ul li a img {
+        width: 13%;
+    }
+}
+
 @media(max-width: 961px) {
     #foot {
         ul {
             width: 70%;
             margin-left: 25%;
+            li { font-size: 1.1rem; }
         }
     }
 }

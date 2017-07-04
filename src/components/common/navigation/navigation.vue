@@ -23,7 +23,8 @@
         border-radius: .5rem;
         border: .2rem solid white;
         font-family: 'Strait', sans-serif;
-        text-shadow: 0 0 .3rem black 0 0 .6rem black;
+        text-shadow: 0 0 .3rem black;
+        box-shadow: 0 0 .3rem black;
         &:hover {
           cursor: pointer;
           text-shadow: 0 0 .5rem white;
