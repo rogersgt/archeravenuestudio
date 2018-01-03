@@ -40,12 +40,17 @@
     }
 }
 
+@media(max-width: 1080px) {
+    #foot ul li {
+        font-size: .9rem;
+    }
+}
+
 @media(max-width: 961px) {
     #foot {
         ul {
             width: 70%;
             margin-left: 25%;
-            li { font-size: 1.1rem; }
         }
     }
 }

@@ -4,6 +4,11 @@ import VueResource from 'vue-resource';
 import attachFastClick from 'fastclick';
 import ElementUI from 'element-ui';
 import $ from 'jquery';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+console.log(process.env.NODE_ENV);
 
 Vue.use(VueRouter);
 Vue.use(VueResource);

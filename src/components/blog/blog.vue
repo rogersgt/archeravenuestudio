@@ -18,7 +18,8 @@
         }
     }
     .filter {
-        background-color: black;
+        background-color: $gunSmoke;
+        box-shadow: 0 0 .4rem $lightGray inset;
         color: white;
         padding: 2%;
         width: 76%;
@@ -61,7 +62,7 @@
         background-color: $gray;
         text-align: center;
         padding: 2%;
-        width: 98%;
+        width: 96%;
         ul {
             width: 80%;
             margin: .5% 10%;
@@ -80,7 +81,7 @@
 <template lang="html">
     <section id="blog">
         <h title="Blog"></h>
-        <div class="box filter">
+        <div class="filter">
             <h6>Display blog posts from the date range below.</h6>
             <ul>
                 <li><input type="date" v-model="from"></li>
@@ -105,7 +106,8 @@ import post from './post.vue';
 
 export default {
     created: function() {
-        this.setFilter();
+        // this.setFilter();
+        this.getBlogs();
     },
     components: {
         h: head,
@@ -116,28 +118,7 @@ export default {
         return {
             from: '',
             to: '',
-            posts: [
-                {
-                    title: 'First Post',
-                    author: 'Kenny',
-                    content: 'Stuff and things and things and stuff man.'
-                },
-                {
-                    title: 'First Post',
-                    author: 'Kenny',
-                    content: 'Stuff and things and things and stuff man.'
-                },
-                {
-                    title: 'First Post',
-                    author: 'Kenny',
-                    content: 'Stuff and things and things and stuff man.'
-                },
-                {
-                    title: 'First Post',
-                    author: 'Kenny',
-                    content: 'Stuff and things and things and stuff man.'
-                }
-            ]
+            posts: []
         };
     },
     methods: {
@@ -145,16 +126,27 @@ export default {
             let from = new Date();
             from.setDate(from.getDate() - 14);
             this.from = this.formatDate(from);
-            // this.from = this.formatDate(from).toDateString();
             this.to = this.formatDate(new Date());
-            console.log(this.to);
         },
         formatDate: (d) => {
-            const day = d.getDay() + 1 >= 10 ? d.getDay() + 1 : `0${d.getDay()}`;
-            const month = d.getMonth() + 1 >= 10 ? d.getMonth() + 1 : `0${d.getMonth()}`;
+            const day = d.getDate() >= 10 ? d.getDate() : `0${d.getDate()}`;
+            const month = d.getMonth() + 1 >= 10 ? d.getMonth() + 1 : `0${d.getMonth() + 1}`;
             const result = `${d.getFullYear()}-${month}-${day}`;
-            console.log(result);
             return result;
+        },
+        getBlogs: function() {
+            let protocol = '';
+            if (process.env.NODE_ENV === 'production') protocol = 's';
+            this.$get(`http${protocol}://${API_HOST}/api/get-blogs`)
+            .then(success, err);
+
+            function success(data) {
+                console.log(data);
+            }
+
+            function err(error) {
+                console.log(error);
+            }
         }
     }
 }
