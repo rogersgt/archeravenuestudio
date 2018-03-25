@@ -7,10 +7,9 @@
     "vue": "vue/dist/vue.common"
   },
   "scripts": {
-    "build:dev": "watchify -p browserify-hmr -t [ babelify --presets [ env ] ] -t [ vueify ] -e src/app.js -o dist/index.js",
-    "build:prod": "NODE_ENV='production' browserify -t [ babelify --presets [ env] ] -t [ vueify ] -t [ envify ] -e src/app.js -o dist/index.js",
-    "files": "cp src/index.html dist/index.html & node tasks.js",
-    "start": "NODE_ENV='development' yarn files & npm run build:dev & cd dist && serve"
+    "start": "source ./dev.env && yarn files && watchify -p browserify-hmr -t [ babelify ] -t [ vueify ] -e src/app.js -o dist/index.js",
+    "build:prod": "source ./prod.env && browserify -t [ babelify ] -t [ vueify ] -t [ envify ] -e src/app.js -o dist/index.js",
+    "files": "mkdir -p dist/assets && cp src/index.html dist/index.html && cp src/favicon.ico dist/ && cp src/assets/* dist/assets/"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +21,7 @@
     "fastclick": "^1.0.6",
     "jquery": "^3.1.1",
     "path": "^0.12.7",
+    "qp-element-ui": "^1.0.0-rc.8.1",
     "vue": "^2.2.2",
     "vue-resource": "^1.3.4",
     "vue-router": "^2.3.0",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.23.1",
+    "babel-plugin-component": "0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-vue": "^0.1.0",

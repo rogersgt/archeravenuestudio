@@ -1,3 +1,4 @@
+// waiting on this issue: https://github.com/thetutlage/vue-clip/issues/37
 const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');

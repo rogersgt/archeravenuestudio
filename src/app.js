@@ -1,11 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-// import attachFastClick from 'fastclick';
+import attachFastClick from 'fastclick';
 import ElementUI from 'element-ui';
 import $ from 'jquery';
-
-console.log(process.env.NODE_ENV);
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -48,12 +46,8 @@ const router = new VueRouter({
 
 // router.push('/');
 
-// router.beforeEach(() => {
-//   window.scrollTo(0, 0)
-// });
-
 const app = new Vue({
   router
 }).$mount('#app');
 
-// attachFastClick(document.body);
+attachFastClick(document.body);
