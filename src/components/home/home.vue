@@ -4,7 +4,7 @@
   .home {
     width: 100%;
     height: 100vh;
-    background-image: url('assets/control_room_side.jpg');
+    background-image: url('../../assets/controlroom1.jpg');
     background-size: cover;
     background-position: bottom;
     h4 {
@@ -49,7 +49,7 @@
 <template lang="html">
 <div class="page home">
     <ul id="logo">
-      <li><img src="./assets/logo.png" alt=""></li>
+      <li><img src="../../assets/logo.png" alt=""></li>
       <li><h1>RCHER AVENUE STUDIO</h1></li>
     </ul>
     <h4>Columbia, SC</h4>

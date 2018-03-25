@@ -25,7 +25,7 @@
 <template>
     <div class="player">
         <div class="nowPlaying"></div>
-        <div class="track" v-for="track in tracks">
+        <div :key="track" class="track" v-for="track in tracks">
             <i v-on:click="play(track)" v-if="!track.isPlaying" class="fa fa-play" aria-hidden="true"></i>
             <i v-on:click="play(track)" class="fa fa-pause" aria-hidden="true" v-if="track.isPlaying"></i> 
             <span v-on:click="restart(track)">{{track.title}} By: {{track.artist}}</span>
@@ -42,7 +42,7 @@
                         title: "Ghost",
                         artist: "Badweather",
                         isPlaying: false,
-                        audio: new Audio("assets/Ghost.mp3")
+                        audio: new Audio("../../assets/Ghost.mp3")
                     }
                 ]
             };

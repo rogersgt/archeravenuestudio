@@ -7,8 +7,8 @@
     "vue": "vue/dist/vue.common"
   },
   "scripts": {
-    "build:dev": "watchify -p browserify-hmr -t [ babelify --presets [ es2015 ] ] -t [ vueify ] -e src/app.js -o dist/index.js",
-    "build:prod": "NODE_ENV='production' browserify -t [ babelify --presets [ es2015] ] -t [ vueify ] -t [ envify ] -e src/app.js -o dist/index.js",
+    "build:dev": "watchify -p browserify-hmr -t [ babelify --presets [ env ] ] -t [ vueify ] -e src/app.js -o dist/index.js",
+    "build:prod": "NODE_ENV='production' browserify -t [ babelify --presets [ env] ] -t [ vueify ] -t [ envify ] -e src/app.js -o dist/index.js",
     "files": "cp src/index.html dist/index.html & node tasks.js",
     "start": "NODE_ENV='development' yarn files & npm run build:dev & cd dist && serve"
   },
@@ -16,23 +16,30 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "dotenv-webpack": "^1.5.5",
     "element-ui": "^1.2.4",
     "envify": "^4.0.0",
     "fastclick": "^1.0.6",
     "jquery": "^3.1.1",
+    "path": "^0.12.7",
     "vue": "^2.2.2",
     "vue-resource": "^1.3.4",
-    "vue-router": "^2.3.0"
+    "vue-router": "^2.3.0",
+    "webpack": "^4.1.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.23.1",
-    "babel-preset-es2015": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-vue": "^0.1.0",
     "babelify": "^7.3.0",
     "browserify": "^14.1.0",
     "browserify-hmr": "^0.3.5",
-    "node-sass": "^4.5.3",
+    "css-loader": "^0.28.11",
+    "node-sass": "^4.7.2",
+    "vue-loader": "^14.2.1",
+    "vue-template-compiler": "^2.5.16",
     "vueify": "^9.4.1",
     "watchify": "^3.9.0"
   }

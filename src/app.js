@@ -1,12 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-import attachFastClick from 'fastclick';
+// import attachFastClick from 'fastclick';
 import ElementUI from 'element-ui';
 import $ from 'jquery';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 console.log(process.env.NODE_ENV);
 
@@ -59,4 +56,4 @@ const app = new Vue({
   router
 }).$mount('#app');
 
-attachFastClick(document.body);
+// attachFastClick(document.body);

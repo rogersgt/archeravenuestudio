@@ -40,10 +40,10 @@
 <template>
     <ul id="socialMedia">
         <li>
-            <a href="https://www.instagram.com/archeravenuestudio/" target="_blank"><img src="assets/instagram.png" /></a>
+            <a href="https://www.instagram.com/archeravenuestudio/" target="_blank"><img src="../../assets/instagram.png" /></a>
         </li>
         <li class="shrink">
-            <a href="https://www.facebook.com/archeravenuestudio/" target="_blank"><img src="assets/facebook.png" /></a>
+            <a href="https://www.facebook.com/archeravenuestudio/" target="_blank"><img src="../../assets/facebook.png" /></a>
         </li>
     </ul>
 </template>

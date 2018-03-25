@@ -56,7 +56,7 @@
       <h1>{{ title }}</h1>
     </li>
     <li>
-      <img class="floatLogo" src="assets/logo.png" alt="">
+      <img class="floatLogo" src="../../../assets/logo.png" alt="">
     </li>
     <li>
       rcher Avenue Studio

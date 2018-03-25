@@ -17,7 +17,7 @@
     width: 100%;
     height: 100vh;
     top: 0;
-    background-image: url('assets/control_room_side.jpg');
+    background-image: url('../../assets/controlroom1.jpg');
     background-size: cover;
     background-position: center;
     form {

@@ -9,7 +9,7 @@
         top: 0;
         margin: 0;
         padding: 0 0 5% 0;
-        background-image: url('assets/control_room_side.jpg');
+        background-image: url('../../assets/controlroom1.jpg');
         background-size: cover;
         background-position: center;
         .eng {
@@ -140,7 +140,7 @@
 
         <li class="eng">
             <h4>Kenny McWilliams</h4>
-            <img src="./assets/Kenny_headshot.jpeg" alt="Kenny McWilliams" />
+            <img src="../../assets/kenny.jpg" alt="Kenny McWilliams" />
             <el-collapse accordion>
                 <el-collapse-item title="About">
                     <p>{{kenny.about.p1}}</p>
@@ -162,7 +162,7 @@
         </li>
         <li class="eng second">
             <h4>Eric McCoy</h4>
-            <img src="./assets/Eric_headshot.jpeg" alt="Eric McCoy" />
+            <img src="../../assets/eric.jpg" alt="Eric McCoy" />
             <el-collapse accordion>
                 <el-collapse-item title="About">
                     <p>{{eric.about.p1}}</p>

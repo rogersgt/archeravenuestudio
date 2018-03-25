@@ -4,7 +4,7 @@
     width: 100%;
     margin: 0;
     padding: 5% 0 0 0;
-    background-image: url('assets/control_room_side.jpg');
+    background-image: url('../../assets/controlroom1.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -92,7 +92,7 @@
         <div class="blogList" v-if="posts.length > 0">
             <!--<h3>Blog Posts from Archer Avenue</h3>-->
             <ul>
-                <post v-for="post in posts" :content="post.content" :title="post.title" :author="post.author"></post>
+                <post :key="post.id" v-for="post in posts" :content="post.content" :title="post.title" :author="post.author"></post>
             </ul>
         </div>
         <navigation start-open="true" close-quick="true"></navigation>
