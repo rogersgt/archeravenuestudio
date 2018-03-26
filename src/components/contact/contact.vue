@@ -110,7 +110,7 @@
         <span v-if="badEmailOne" class="errMsg">{{errorMessage}}</span>
 
         <input v-on:change="watchConfirm" v-model="email.confirm" v-bind:class="{badInput:badEmailTwo}" type="text" placeholder="Confirm Email"></input>
-        <span v-if="badEmailtwo" class="errMsg">{{errorMessage}}</span>
+        <span v-if="badEmailTwo" class="errMsg">{{errorMessage}}</span>
 
         <input v-on:change="watchSubject" v-model="email.subject" v-bind:class="{badInput:badSubject}" type="text" placeholder="Subject (i.e. Booking)"></input>
         <span v-if="badSubject" class="errMsg">{{errorMessage}}</span>
@@ -167,9 +167,16 @@
             this.errorMessage = "Please include a message.";
              return this.badMessage = true;
           }
-          console.log(this.email);
-          console.log(process.env.EMAIL_API);
           this.clicked = true;
+          this.$http.post(`${process.env.API_HOST}/mail`, this.email)
+          .then((res) => {
+            // console.log(res);
+            this.clicked = false;
+            this.email.email = this.email.confirm = this.email.message = this.email.subject = '';
+          }, (errRes) => {
+            console.log(errRes);
+            alert('There was an error sending your message. Sorry, please try again or reach out on another channel.');
+          });
         }
       },
       post: function(msg) {

@@ -6,7 +6,7 @@
     <meta name="keywords" content="Kenny McWilliams, recording, studio, Columbia South Carolina, Eric McCoy">
     <meta name="description" content="Archer Avenue Studio is a recording studio run by Kenny McWilliams and Eric McCoy located in Columbia, SC.">
     <title>Archer Avenue Studio</title>
-    <link rel="shortcut icon" src='./favicon.ico'>
+    <link rel="icon" src='/favicon.ico'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/1.2.4/theme-default/index.css">
     <link href="https://fonts.googleapis.com/css?family=Strait" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,6 +35,9 @@
         padding: 0;
         overflow-x: hidden;        
       }
+      button {
+        touch-action: manipulation;
+      }
     </style>
   </head>
   <body>
@@ -43,7 +46,7 @@
       <router-view></router-view>
       <footer id="foot">
         <ul>
-          <li><a href="/"><img src="assets/logo.png"/>rcher Avenue</a></li>
+          <li><a href="/"><img src="logo.png"/>rcher Avenue</a></li>
           <li><a href="https://www.facebook.com/archeravenuestudio/" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</a></li>
           <li><a href="https://www.instagram.com/archeravenuestudio/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a></li>
           <li><a href="/#/contact"><i class="fa fa-envelope" aria-hidden="true"></i> Email</a></li>

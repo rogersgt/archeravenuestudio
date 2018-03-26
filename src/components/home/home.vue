@@ -59,6 +59,7 @@
 </div>
 </template>
 <script>
+  // import '../../assets/controlroom1.jpg';
   import navigation from '../common/navigation/navigation.vue';
   import loading from '../common/loading.vue';
   import media from '../common/socialMedia.vue';
@@ -75,6 +76,7 @@
       }
     },
     created: function() {
+      console.log(`API HOST: ${process.env.API_HOST}`);
       this.fadeIn();
     }
   }

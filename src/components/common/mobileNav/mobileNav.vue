@@ -135,7 +135,10 @@
       return {
         open: false,
         home: false,
-        gallery: false
+        gallery: false,
+        engineers: false,
+        blog: false,
+        contact: false
       };
     },
     props: ['startOpen', 'closeQuick']

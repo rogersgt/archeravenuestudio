@@ -1,10 +1,24 @@
-// waiting on this issue: https://github.com/thetutlage/vue-clip/issues/37
+const fs = require('fs');
+const ncp = require('ncp');
 const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
+const distDir = `${__dirname}/dist`;
+const distExists = !!fs.existsSync(distDir);
+
+if (!distExists) {
+  fs.mkdirSync(distDir);
+}
+
+fs.copyFileSync(`${__dirname}/src/index.html`, `${__dirname}/dist/index.html`);
+fs.copyFileSync(`${__dirname}/src/favicon.ico`, `${__dirname}/dist/favicon.ico`);
+fs.copyFileSync(`${__dirname}/src/assets/logo.png`, `${__dirname}/dist/logo.png`);
+
+process.env.NODE_ENV = 'development';
+
 const env = new Dotenv({
-  path: './dev.env'
+  path: `${__dirname}/dev.env`
 });
 
 const occur = new webpack.optimize.OccurrenceOrderPlugin();
@@ -16,7 +30,7 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/dist`,
-    publicPath: 'dist/',
+    publicPath: '/',
     filename: 'index.js'
   },
   module: {
@@ -59,13 +73,18 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    // publicPath: '/'
+  },
   plugins: [
     env,
     occur
-  ],
-  resolve: {
-    alias: {
-      'vue$': `${__dirname}/node_modules/vue/dist/vue.common.js`
-    }
-  }
+  ]
 };

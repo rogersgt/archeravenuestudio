@@ -1,39 +1,48 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-import attachFastClick from 'fastclick';
+// import attachFastClick from 'fastclick';
 import ElementUI from 'element-ui';
 import $ from 'jquery';
+
+// require(`${__dirname}/assets/logo.png`);
+import home from './components/home/home.vue';
+import gallery from './components/gallery/gallery.vue';
+import engineers from './components/engineers/engineers.vue';
+import blog from './components/blog/blog.vue';
+import contact from './components/contact/contact.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(ElementUI);
 Vue.use(() => { window.$ = window.jQuery = $; });
 
+Vue.http.headers.common['x-api-key'] = process.env.API_KEY;
+
 const routes = [
   {
     path: '/',
-    component: require('./components/home/home.vue'),
+    component: home,
     name: 'home'
    },
   {
     path: '/gallery',
-    component: require('./components/gallery/gallery.vue'),
+    component: gallery,
     name: 'gallery'
   },
   {
     path: '/engineers',
-    component: require('./components/engineers/engineers.vue'),
+    component: engineers,
     name: 'engineers'
   },
   {
     path: '/blog',
-    component: require('./components/blog/blog.vue'),
+    component: blog,
     name: 'blog'
   },
   {
     path: '/contact',
-    component: require('./components/contact/contact.vue'),
+    component: contact,
     name: 'contact'
   }
 ];
@@ -50,4 +59,4 @@ const app = new Vue({
   router
 }).$mount('#app');
 
-attachFastClick(document.body);
+// attachFastClick(document.body);
