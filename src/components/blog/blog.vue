@@ -1,5 +1,6 @@
 <style lang="scss">
 @import "../common/variables.scss";
+@import "../common/footer.scss";
 #blog {
     width: 100%;
     margin: 0;

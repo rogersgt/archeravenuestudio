@@ -1,5 +1,6 @@
 <style lang="scss">
   @import "../common/variables.scss";
+  @import "../common/footer.scss";
   #submit {
     background-color: $okGreen;
     border: none;
@@ -24,7 +25,7 @@
       width: 76%;
       margin: 0 12%;
       padding: 1.8% 0;
-      background-color: $transWhite;
+      background-color: $thinGray;
       box-shadow: 0 0 .4rem black;
       border-radius: .2rem;
       h3 {

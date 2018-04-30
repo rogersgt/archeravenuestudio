@@ -13,14 +13,19 @@
 </template>
 
 <script type="text/javascript">
+import liveroom from '../../assets/liveroom1.jpg';
+import mic from '../../assets/mic1.jpg';
+import drums from '../../assets/drums1.jpg';
+import keys from '../../assets/keys1.jpg';
+
 export default {
     data: function() {
         return {
             pictures: [
-                '/../../assets/liveroom1.jpg',
-                '/../../assets/mic1.jpg',
-                '/../../assets/drums1.jpg',
-                '/../../assets/keys1.jpg'
+                liveroom,
+                mic,
+                drums,
+                keys
             ]
         };
     }

@@ -1,5 +1,6 @@
 <style lang="scss">
 @import "../common/variables.scss";
+@import "../common/footer.scss";
 .background { // for music player
     .el-collapse-item__content { background-color: black; }
 }
@@ -16,7 +17,7 @@
             display: inline-block;
             width: 43%;
             margin: 5% 0 0 7%;
-            background-color: $transGray;
+            // background-color: $transGray;
             vertical-align: top;
             padding: 2.4% 0 5% 0;
             border-radius: .1rem;

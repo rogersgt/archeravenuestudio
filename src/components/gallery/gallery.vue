@@ -1,3 +1,7 @@
+<style lang="scss">
+@import "../common/footer.scss";
+</style>
+
 <template lang="html">
 <div class="page gallery">
   <h title="Gallery"></h>
