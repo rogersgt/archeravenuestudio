@@ -3,7 +3,11 @@
 
 .editableSection {
   margin: 5% auto;
+  width: 80%;
+  font-family: 'Strait', sans-serif;
 }
+
+
 
 @import "./admin.media.scss";
 </style>
@@ -12,7 +16,7 @@
 <section class="page">
   <top />
   <div class="editableSection">
-    <h3>Edit Engineers</h3>
+    <h3>Admin Panel</h3>
     <edit-engineer :key="engineer.lastName.S" v-for="engineer in engineers" :engineer="engineer"></edit-engineer>
   </div>
 </section>
@@ -44,6 +48,8 @@ export default {
     }
   },
   created: function() {
+    const token = localStorage.getItem(`${process.env.TOKEN_NAME}`);
+    if (!token) this.$router.push('login');
     this.getengineerData();
   }
 }

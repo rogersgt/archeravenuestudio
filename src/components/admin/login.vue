@@ -109,8 +109,7 @@ export default {
       this.$http.post(`${process.env.API_HOST}/login`, payload)
       .then((res) => {
         if (!!res && !!res.body && !!res.body.token) {
-          // this.$cookie.set(`${process.env.COOKIE_NAME}`, res.body.token);
-          localStorage.setItem(process.env.COOKIE_NAME, res.body.token);
+          localStorage.setItem(process.env.TOKEN_NAME, res.body.token);
           this.$router.push('admin');
         } else {
           this.badLogin = true;
