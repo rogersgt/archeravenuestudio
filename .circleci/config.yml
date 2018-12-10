@@ -30,3 +30,14 @@ jobs:
               --region $AWS_REGION \
               --acl public-read \
               --cache-control max-age=300
+
+workflows:
+  version: 2
+
+  deployment:
+    jobs:
+      - deployment:
+          filters:
+            branches:
+              only:
+                - master
