@@ -31,8 +31,8 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig: 
-        # Aliases:
-        #   - !Ref 'CNAME'
+        Aliases:
+          - !Ref 'CNAME'
         Comment: Archer Avenue
         CustomErrorResponses:
           - ErrorCachingMinTTL: 0
