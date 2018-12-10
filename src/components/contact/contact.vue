@@ -176,7 +176,7 @@
             this.email.email = this.email.confirm = this.email.message = this.email.subject = '';
           }, (errRes) => {
             console.log(errRes);
-            alert('There was an error sending your message. Sorry, please try again or reach out on another channel.');
+            // alert('There was an error sending your message. Sorry, please try again or reach out on another channel.');
           });
         }
       },

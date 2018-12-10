@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Archer Avenue Frontend
+
+Parameters:
+  CNAME:
+    Type: String
+    Description: Alternate CNAME record that will point to the CloudFront Distribution
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      AccessControl: PublicRead
+      BucketName: archeravenuestudio-frontend
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - Authorization
+            AllowedMethods:
+              - GET
+            AllowedOrigins:
+              - '*'
+            MaxAge: 3000
+      VersioningConfiguration:
+        Status: Enabled
+      WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+
+  Cloudfront:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig: 
+        # Aliases:
+        #   - !Ref 'CNAME'
+        Comment: Archer Avenue
+        CustomErrorResponses:
+          - ErrorCachingMinTTL: 0
+            ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCachingMinTTL: 0
+            ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+          DefaultTTL: 86400
+          ForwardedValues:
+            Cookies:
+              Forward: none
+            QueryString: false
+          MaxTTL: 31536000
+          MinTTL: 0
+          SmoothStreaming: false
+          TargetOriginId: !Ref S3Bucket
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+        DefaultRootObject: index.html
+        Enabled: true
+        IPV6Enabled: true
+        Origins:
+          - DomainName: !Join ['.', [!Ref S3Bucket, 's3.amazonaws.com']]
+            Id: !Ref S3Bucket
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:230741442635:certificate/ada89ed5-b652-4e45-b894-9cc2dc8dd7ad
+          SslSupportMethod: sni-only
+
+Outputs:
+  CloudfrontDistribution:
+    Value: !Ref Cloudfront
