@@ -37,7 +37,7 @@ Resources:
     Properties:
       DistributionConfig: 
         Aliases:
-          - !Join ['', [!Ref 'Subdomain', '.', !FindInMap [HostedZone, !Ref 'AWS::AccountId', Name, '.']]]
+          - !Join ['', [!Ref 'Subdomain', '.', !FindInMap [HostedZone, !Ref 'AWS::AccountId', Name], '.']]
         Comment: Archer Avenue
         CustomErrorResponses:
           - ErrorCachingMinTTL: 0
