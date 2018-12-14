@@ -17,7 +17,7 @@ jobs:
             aws cloudformation update-stack \
               --template-body file://cloudformation.yml \
               --stack-name cloudfront-archeravenue-distribution \
-              --parameters ParameterKey=CNAME,ParameterValue=archeravenue \
+              --parameters ParameterKey=subdomain,ParameterValue=archeravenue \
               --capabilities CAPABILITY_NAMED_IAM \
               --region $AWS_REGION
       - run:
@@ -29,7 +29,7 @@ jobs:
             aws s3 sync dist s3://archeravenuestudio-frontend \
               --region $AWS_REGION \
               --acl public-read \
-              --cache-control max-age=300
+              --cache-control max-age=300 || echo 'No Updates'
 
 workflows:
   version: 2

@@ -2,9 +2,14 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Archer Avenue Frontend
 
 Parameters:
-  CNAME:
+  Subdomain:
     Type: String
-    Description: Alternate CNAME record that will point to the CloudFront Distribution
+    Description: Subdomain
+
+Mappings:
+  HostedZone:
+    '230741442635':
+      Name: silverbot.net # dev site
 
 Resources:
   S3Bucket:
@@ -32,7 +37,7 @@ Resources:
     Properties:
       DistributionConfig: 
         Aliases:
-          - !Ref 'CNAME'
+          - !Join ['', [!Ref 'Subdomain', '.', !FindInMap [HostedZone, !Ref 'AWS::AccountId', Name, '.']]]
         Comment: Archer Avenue
         CustomErrorResponses:
           - ErrorCachingMinTTL: 0
