@@ -17,7 +17,7 @@ jobs:
             aws cloudformation update-stack \
               --template-body file://cloudformation.yml \
               --stack-name cloudfront-archeravenue-distribution \
-              --parameters ParameterKey=subdomain,ParameterValue=archeravenue \
+              --parameters ParameterKey=Subdomain,ParameterValue=archeravenue \
               --capabilities CAPABILITY_NAMED_IAM \
               --region $AWS_REGION
       - run:
