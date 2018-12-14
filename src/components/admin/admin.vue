@@ -1,6 +1,4 @@
 <style lang="scss">
-@import "../common/footer.scss"; // should probably be somewhere else...
-
 .editableSection {
   margin: 5% auto;
   width: 80%;
@@ -19,12 +17,14 @@
     <h3>Admin Panel</h3>
     <edit-engineer :key="engineer.lastName.S" v-for="engineer in engineers" :engineer="engineer"></edit-engineer>
   </div>
+  <foot></foot>
 </section>
 </template>
 
 <script>
 import top from '../common/header/header.vue';
 import editEngineer from './child.editEngineer.vue';
+import foot from '../common/footer/footer.vue';
 
 export default {
   data: function() {
@@ -34,7 +34,8 @@ export default {
   },
   components: {
     top,
-    editEngineer
+    editEngineer,
+    foot
   },
   methods: {
     getengineerData: function() {

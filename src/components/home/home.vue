@@ -1,6 +1,6 @@
 <style lang="scss">
   @import "../common/variables.scss";
-  @import "../common/footer.scss"; // should probably be somewhere else...
+  @import "../common/footer/footer.scss"; // should probably be somewhere else...
   .home {
     width: 100%;
     height: 100vh;
@@ -47,28 +47,33 @@
   @import "./home.media.scss";
 </style>
 <template lang="html">
-<div class="page home">
-    <ul id="logo">
-      <li><img src="../../assets/logo.png" alt=""></li>
-      <li><h1>RCHER AVENUE STUDIO</h1></li>
-    </ul>
-    <h4>Columbia, SC</h4>
-    <loading></loading>
-    <navigation window-load="true"></navigation>
-   <media></media>
-</div>
+  <section>
+    <div class="page home">
+      <ul id="logo">
+        <li><img src="../../assets/logo.png" alt=""></li>
+        <li><h1>RCHER AVENUE STUDIO</h1></li>
+      </ul>
+      <h4>Columbia, SC</h4>
+      <loading></loading>
+      <navigation window-load="true"></navigation>
+      <media></media>
+    </div>
+    <foot />
+  </section>
 </template>
 <script>
   // import '../../assets/controlroom1.jpg';
   import navigation from '../common/navigation/navigation.vue';
   import loading from '../common/loading.vue';
   import media from '../common/socialMedia.vue';
+  import foot from '../common/footer/footer.vue';
 
   export default {
     components: {
-      navigation: navigation,
-      loading: loading,
-      media: media
+      navigation,
+      loading,
+      media,
+      foot
     },
     methods: {
       fadeIn: () => {
@@ -76,7 +81,6 @@
       }
     },
     created: function() {
-      console.log(`API HOST: ${process.env.API_HOST}`);
       this.fadeIn();
     }
   }

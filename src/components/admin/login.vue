@@ -1,6 +1,6 @@
 <style lang="scss">
 @import "../common/variables.scss";
-@import "../common/footer.scss"; // should probably be somewhere else...
+@import "../common/footer/footer.scss"; // should probably be somewhere else...
 
 #login {
   font-family: 'Strait', sans-serif;

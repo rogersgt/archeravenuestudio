@@ -1,15 +1,18 @@
 <style lang="scss">
-@import "../common/footer.scss";
+@import "../common/footer/footer.scss";
 </style>
 
 <template lang="html">
-<div class="page gallery">
-  <h title="Gallery"></h>
-  <carousel></carousel>
-  <dynamic-nav></dynamic-nav>
-  <media></media>
-  <loading></loading>
-</div>
+<section>
+  <div class="page gallery">
+    <h title="Gallery"></h>
+    <carousel></carousel>
+    <dynamic-nav></dynamic-nav>
+    <media></media>
+    <loading></loading>
+  </div>
+  <foot />
+</section>
 </template>
 <script>
   import carousel from './carousel.vue';
@@ -17,14 +20,16 @@
   import header from '../common/header/header.vue';
   import loading from '../common/loading.vue';
   import media from '../common/socialMedia.vue';
+  import foot from '../common/footer/footer.vue';
 
   export default {
     components: {
-      carousel: carousel,
-      dynamicNav: dynamicNav,
+      carousel,
+      dynamicNav,
       h: header,
-      loading: loading,
-      media: media
+      loading,
+      media,
+      foot
     }
   }
 </script>

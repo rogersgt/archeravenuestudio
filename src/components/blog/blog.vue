@@ -1,6 +1,5 @@
 <style lang="scss">
 @import "../common/variables.scss";
-@import "../common/footer.scss";
 #blog {
     width: 100%;
     margin: 0;
@@ -80,29 +79,33 @@
 </style>
 
 <template lang="html">
-    <section id="blog">
-        <h title="Blog"></h>
-        <div class="filter">
-            <h6>Display blog posts from the date range below.</h6>
-            <ul>
-                <li><input type="date" v-model="from"></li>
-                <li><input type="date" v-model="to"></li>
-            </ul>
+    <section>
+        <div id="blog">
+            <h title="Blog"></h>
+            <div class="filter">
+                <h6>Display blog posts from the date range below.</h6>
+                <ul>
+                    <li><input type="date" v-model="from"></li>
+                    <li><input type="date" v-model="to"></li>
+                </ul>
+            </div>
+            <h4 class="noPosts" v-if="posts.length === 0">There are no blogs from this date range...</h4>
+            <div class="blogList" v-if="posts.length > 0">
+                <!--<h3>Blog Posts from Archer Avenue</h3>-->
+                <ul>
+                    <post :key="post.id" v-for="post in posts" :content="post.content" :title="post.title" :author="post.author"></post>
+                </ul>
+            </div>
+            <navigation start-open="true" close-quick="true"></navigation>
         </div>
-        <h4 class="noPosts" v-if="posts.length === 0">There are no blogs from this date range...</h4>
-        <div class="blogList" v-if="posts.length > 0">
-            <!--<h3>Blog Posts from Archer Avenue</h3>-->
-            <ul>
-                <post :key="post.id" v-for="post in posts" :content="post.content" :title="post.title" :author="post.author"></post>
-            </ul>
-        </div>
-        <navigation start-open="true" close-quick="true"></navigation>
+        <foot />
     </section>
 </template>
 
 <script>
 import head from '../common/header/header.vue';
 import navigation from '../common/mobileNav/mobileNav.vue';
+import foot from '../common/footer/footer.vue';
 import post from './post.vue';
 
 export default {
@@ -112,8 +115,9 @@ export default {
     },
     components: {
         h: head,
-        navigation: navigation,
-        post: post
+        navigation,
+        post,
+        foot
     },
     data: function () {
         return {

@@ -1,6 +1,6 @@
 <style lang="scss">
   @import "../common/variables.scss";
-  @import "../common/footer.scss";
+  @import "../common/footer/footer.scss";
   #submit {
     background-color: $okGreen;
     border: none;
@@ -99,42 +99,47 @@
   }
 </style>
 <template lang="html">
-    <section class="contact">
-      <h title="Contact"></h>
-      <form>
-        <h3>Contact Archer Avenue Studio</h3>
-        <p>
-          We have varied rates depending on the nature of your project. 
-          Please contact us and we'll get you a personalized quote right away. 
-        </p>
-        <input v-on:change="watchEmail" v-model="email.email" v-bind:class="{badInput:badEmailOne}" type="text" placeholder="Email"></input>
-        <span v-if="badEmailOne" class="errMsg">{{errorMessage}}</span>
+    <section>
+      <div class="contact">
+        <h title="Contact"></h>
+        <form>
+          <h3>Contact Archer Avenue Studio</h3>
+          <p>
+            We have varied rates depending on the nature of your project. 
+            Please contact us and we'll get you a personalized quote right away. 
+          </p>
+          <input v-on:change="watchEmail" v-model="email.email" v-bind:class="{badInput:badEmailOne}" type="text" placeholder="Email"></input>
+          <span v-if="badEmailOne" class="errMsg">{{errorMessage}}</span>
 
-        <input v-on:change="watchConfirm" v-model="email.confirm" v-bind:class="{badInput:badEmailTwo}" type="text" placeholder="Confirm Email"></input>
-        <span v-if="badEmailTwo" class="errMsg">{{errorMessage}}</span>
+          <input v-on:change="watchConfirm" v-model="email.confirm" v-bind:class="{badInput:badEmailTwo}" type="text" placeholder="Confirm Email"></input>
+          <span v-if="badEmailTwo" class="errMsg">{{errorMessage}}</span>
 
-        <input v-on:change="watchSubject" v-model="email.subject" v-bind:class="{badInput:badSubject}" type="text" placeholder="Subject (i.e. Booking)"></input>
-        <span v-if="badSubject" class="errMsg">{{errorMessage}}</span>
+          <input v-on:change="watchSubject" v-model="email.subject" v-bind:class="{badInput:badSubject}" type="text" placeholder="Subject (i.e. Booking)"></input>
+          <span v-if="badSubject" class="errMsg">{{errorMessage}}</span>
 
-        <textarea v-on:change="watchMessage" v-model="email.message" v-bind:class="{badInput:badMessage}" placeholder="Message"></textarea>
-        <span v-if="badMessage" class="errMsg">{{errorMessage}}</span>
+          <textarea v-on:change="watchMessage" v-model="email.message" v-bind:class="{badInput:badMessage}" placeholder="Message"></textarea>
+          <span v-if="badMessage" class="errMsg">{{errorMessage}}</span>
 
-        <input v-on:click="submit" v-bind:class="{clicked:clicked}" id="submit" type="button" value="submit" />
-      </form>
-      <media class="onlyDesktop"></media>
-      <navigation start-open="true"></navigation>
+          <input v-on:click="submit" v-bind:class="{clicked:clicked}" id="submit" type="button" value="submit" />
+        </form>
+        <media class="onlyDesktop"></media>
+        <navigation start-open="true"></navigation>
+      </div>
+      <foot />
     </section>
 </template>
 <script>
   import header from '../common/header/header.vue';
   import navigation from '../common/mobileNav/mobileNav.vue';
   import media from '../common/socialMedia.vue';
+  import foot from '../common/footer/footer.vue';
 
   export default {
     components: {
-      navigation: navigation,
+      navigation,
       h: header,
-      media: media
+      media,
+      foot
     },
     data: function() {
         return {
@@ -171,12 +176,10 @@
           this.clicked = true;
           this.$http.post(`${process.env.API_HOST}/mail`, this.email)
           .then((res) => {
-            // console.log(res);
             this.clicked = false;
             this.email.email = this.email.confirm = this.email.message = this.email.subject = '';
           }, (errRes) => {
-            console.log(errRes);
-            // alert('There was an error sending your message. Sorry, please try again or reach out on another channel.');
+            alert('There was an error sending your message. Sorry, please try again or reach out on another channel.');
           });
         }
       },

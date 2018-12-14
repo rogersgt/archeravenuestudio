@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "../variables.scss";
 
 #foot {
     width: 100%;
@@ -12,13 +12,17 @@
         margin: 2% 0 2% 30%;
         padding: 0;
         li {
+            &:hover {
+                cursor: pointer;
+            }
             width: 49%;
             margin: 0;
             padding: 0;
             color: white;
             display: inline-block;
-            font-size: 1.4rem;
-            a img {
+            font-size: 1rem;
+            letter-spacing: .06rem;
+            img {
                 width: 10%;
                 vertical-align: bottom;
             }
@@ -34,38 +38,28 @@
     }
 }
 
-@media(max-width: 1290px) {
-    #foot ul li a img {
-        width: 13%;
-    }
-}
-
 @media(max-width: 1080px) {
-    #foot ul li {
-        font-size: .9rem;
-    }
-}
-
-@media(max-width: 961px) {
-    #foot {
-        ul {
-            width: 70%;
-            margin-left: 25%;
+    #foot ul {
+        width: 100%;
+        margin: 0;
+        li {
+            text-align: center;
+            width: 100%;
+            padding: 0;
+            margin: .5% 0;
+            img {
+                width: 3%;
+            }
+            &:nth-child(3) {
+                padding: 0;
+                width: 100%;
+                margin: .5% 0;
+            }
+            &:nth-child(4) {
+                padding: 0;
+                width: 100%;
+                margin: .5% 0;
+            }
         }
-    }
-}
-
-@media(max-width: 641px) {
-    #foot {
-        ul {
-            width: 90%;
-            margin-left: 5%;
-        }
-    }
-}
-
-@media(max-width: 499px) {
-    #foot ul li {
-        font-size: 1rem;
     }
 }

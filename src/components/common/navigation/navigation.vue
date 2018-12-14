@@ -4,7 +4,7 @@
   #navigation {
     margin: 0;
     padding: 0 0 0 1.2%;
-    width: 100%;
+    width: 98.8%;
     position: absolute;
     z-index: 25;
     bottom: 5vh;

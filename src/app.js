@@ -73,7 +73,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  history: true
+  mode: 'history'
 });
 
 // router.push('/');
