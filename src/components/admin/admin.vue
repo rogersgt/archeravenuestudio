@@ -51,13 +51,12 @@ export default {
       console.log(row);
     },
     getengineerData: function() {
-      const res = this.$http.get(`${process.env.API_HOST}/engineers`)
+      const res = this.$http.get(`${process.env.API_HOST}/engineer`)
       .then((res) => {
         console.log(res);
         this.engineers = res.body.Items || [];
-      }, (err) => {
-        console.log(err);
-      });
+      })
+      .catch((e) => console.log(e));
     }
   },
   created: function() {

@@ -110,7 +110,10 @@ export default {
         console.log(res);
         if (!!res && !!res.body && !!res.body.token) {
           localStorage.setItem(process.env.TOKEN_NAME, res.body.token);
-          this.$router.push('admin');
+          /* hacky workaround to put this at the end of the event loop */
+          setTimeout(() => {
+            this.$router.push('admin')
+          }, 0);
         } else {
           this.badLogin = true;
         }

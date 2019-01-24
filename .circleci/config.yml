@@ -11,25 +11,25 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
-      - run:
-          name: Update CloudFormation
-          command: |
-            aws cloudformation update-stack \
-              --template-body file://cloudformation.yml \
-              --stack-name cloudfront-archeravenue-distribution \
-              --parameters ParameterKey=Subdomain,ParameterValue=archeravenue \
-              --capabilities CAPABILITY_NAMED_IAM \
-              --region $AWS_REGION
-      - run:
-          name: Build
-          command: yarn build:prod
-      - run:
-          name: Upload
-          command: |
-            aws s3 sync dist s3://archeravenuestudio-frontend \
-              --region $AWS_REGION \
-              --acl public-read \
-              --cache-control max-age=300 || echo 'No Updates'
+      # - run:
+      #     name: Update CloudFormation
+      #     command: |
+      #       aws cloudformation update-stack \
+      #         --template-body file://cloudformation.yml \
+      #         --stack-name cloudfront-archeravenue-distribution \
+      #         --parameters ParameterKey=Subdomain,ParameterValue=archeravenue \
+      #         --capabilities CAPABILITY_NAMED_IAM \
+      #         --region $AWS_REGION
+      # - run:
+      #     name: Build
+      #     command: yarn build:prod
+      # - run:
+      #     name: Upload
+      #     command: |
+      #       aws s3 sync dist s3://archeravenuestudio-frontend \
+      #         --region $AWS_REGION \
+      #         --acl public-read \
+      #         --cache-control max-age=300 || echo 'No Updates'
 
 workflows:
   version: 2

@@ -83,17 +83,16 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  ...(process.env.NODE_ENV === 'production') && { mode: 'history' }
 });
 
-router.replace({ path: '*', redirect: '/' });
 // router.push('/');
 
 router.beforeEach((to, from, next) => {
   const { name } = to;
   if (name === 'admin') {
-    const token = window.localStorage.getItem('token');
-    console.log(`TOKEN: ${token}`);
+    const { TOKEN_NAME = 'token' } = process.env;
+    const token = window.localStorage.getItem(TOKEN_NAME);
     if (!token) {
       next({
         name: 'login',
