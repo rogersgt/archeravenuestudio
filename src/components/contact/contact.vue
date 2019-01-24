@@ -1,6 +1,10 @@
 <style lang="scss">
   @import "../common/variables.scss";
   @import "../common/footer/footer.scss";
+  @import "../common/shared.scss";
+  section {
+    background-image: url('../../assets/controlroom1.jpg');
+  }
   #submit {
     background-color: $okGreen;
     border: none;
@@ -18,9 +22,9 @@
     width: 100%;
     height: 100vh;
     top: 0;
-    background-image: url('../../assets/controlroom1.jpg');
     background-size: cover;
     background-position: center;
+    background-color: $transGray;
     form {
       width: 76%;
       margin: 0 12%;
@@ -99,7 +103,7 @@
   }
 </style>
 <template lang="html">
-    <section>
+    <section class="bgImg">
       <div class="contact">
         <h title="Contact"></h>
         <form>

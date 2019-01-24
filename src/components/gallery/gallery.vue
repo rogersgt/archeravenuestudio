@@ -1,4 +1,5 @@
 <style lang="scss">
+@import "../common/shared.scss";
 @import "../common/footer/footer.scss";
 </style>
 

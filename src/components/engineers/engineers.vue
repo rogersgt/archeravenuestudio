@@ -1,6 +1,7 @@
 <style lang="scss">
 @import "../common/variables.scss";
 @import "../common/footer/footer.scss";
+@import "../common/shared.scss";
 .background { // for music player
     .el-collapse-item__content { background-color: black; }
 }
@@ -10,14 +11,13 @@
     top: 0;
     margin: 0;
     padding: 0 0 5% 0;
-    background-image: url('../../assets/controlroom1.jpg');
+    background-color: $transGray;
     background-size: cover;
     background-position: center;
     .eng {
         display: inline-block;
         width: 43%;
         margin: 5% 0 0 7%;
-        // background-color: $transGray;
         vertical-align: top;
         padding: 2.4% 0 5% 0;
         border-radius: .1rem;
@@ -136,7 +136,7 @@
 }
 </style>
 <template lang="html">
-    <section>
+    <section class="bgImg">
         <ul class="engineers">
             <h title="Engineers"></h>
 
@@ -153,12 +153,12 @@
                 <el-collapse accordion>
                         <el-collapse-item title="Client List" name="1">
                             (in no particular order)
-                            <div class="listItem" v-for="client in kenny.clients">{{client}}</div>
+                            <div :key="client" class="listItem" v-for="client in kenny.clients">{{client}}</div>
                         </el-collapse-item>
                 </el-collapse>
                 <el-collapse accordion>
                     <el-collapse-item class="background" title="Sample Tracks">
-                        <player></player>
+                        <!-- <player></player> -->
                     </el-collapse-item>
                 </el-collapse>
             </li>

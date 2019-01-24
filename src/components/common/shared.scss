@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pontano Sans', sans-serif;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.page {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+#app {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;        
+}
+button {
+  touch-action: manipulation;
+}
+.bgImg {
+  background-image: url('../../assets/controlroom1.jpg');
+}

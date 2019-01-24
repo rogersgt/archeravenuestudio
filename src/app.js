@@ -14,6 +14,7 @@ import blog from './components/blog/blog.vue';
 import contact from './components/contact/contact.vue';
 import admin from './components/admin/admin.vue';
 import login from './components/admin/login.vue';
+import editEngineer from './components/admin/editEngineer.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -64,9 +65,18 @@ const routes = [
     name: 'admin'
   },
   {
+    path: '/admin/:lastName',
+    component: editEngineer,
+    name: 'edit'
+  },
+  {
     path: '/login',
     component: login,
     name: 'login'
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ];
 
@@ -76,9 +86,24 @@ const router = new VueRouter({
   mode: 'history'
 });
 
+router.replace({ path: '*', redirect: '/' });
 // router.push('/');
 
-const app = new Vue({
+router.beforeEach((to, from, next) => {
+  const { name } = to;
+  if (name === 'admin') {
+    const token = window.localStorage.getItem('token');
+    console.log(`TOKEN: ${token}`);
+    if (!token) {
+      next({
+        name: 'login',
+      });
+    }
+  }
+  next();
+});
+
+new Vue({
   router
 }).$mount('#app');
 

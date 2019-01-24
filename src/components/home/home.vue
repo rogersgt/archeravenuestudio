@@ -1,6 +1,6 @@
 <style lang="scss">
   @import "../common/variables.scss";
-  @import "../common/footer/footer.scss"; // should probably be somewhere else...
+  @import "../common/shared.scss";
   .home {
     width: 100%;
     height: 100vh;
@@ -30,6 +30,7 @@
         img {
           margin-top: 1%;
           width: 25%;
+          margin-right: -3%;
         }
       }
       &:nth-child(2) {

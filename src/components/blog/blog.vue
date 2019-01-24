@@ -1,12 +1,13 @@
 <style lang="scss">
 @import "../common/variables.scss";
+@import "../common/shared.scss";
 #blog {
     width: 100%;
     margin: 0;
     padding: 5% 0 0 0;
-    background-image: url('../../assets/controlroom1.jpg');
     background-size: cover;
     background-position: center;
+    background-color: $transGray;
     height: 100vh;
     overflow: scroll;
     .blogList {
@@ -79,7 +80,7 @@
 </style>
 
 <template lang="html">
-    <section>
+    <section class="bgImg">
         <div id="blog">
             <h title="Blog"></h>
             <div class="filter">
@@ -107,6 +108,7 @@ import head from '../common/header/header.vue';
 import navigation from '../common/mobileNav/mobileNav.vue';
 import foot from '../common/footer/footer.vue';
 import post from './post.vue';
+import axios from 'axios';
 
 export default {
     created: function() {
@@ -140,18 +142,9 @@ export default {
             return result;
         },
         getBlogs: function() {
-            let protocol = '';
-            if (process.env.NODE_ENV === 'production') protocol = 's';
-            this.$get(`http${protocol}://${API_HOST}/api/get-blogs`)
-            .then(success, err);
-
-            function success(data) {
-                console.log(data);
-            }
-
-            function err(error) {
-                console.log(error);
-            }
+            const { API_HOST } = process.env;
+            axios.get(API_HOST)
+            .then((data) => console.log(data));
         }
     }
 }

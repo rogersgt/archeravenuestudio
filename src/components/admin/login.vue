@@ -1,7 +1,6 @@
 <style lang="scss">
 @import "../common/variables.scss";
-@import "../common/footer/footer.scss"; // should probably be somewhere else...
-
+@import "../common/shared.scss";
 #login {
   font-family: 'Strait', sans-serif;
   width: 50%;
@@ -108,15 +107,15 @@ export default {
       };
       this.$http.post(`${process.env.API_HOST}/login`, payload)
       .then((res) => {
+        console.log(res);
         if (!!res && !!res.body && !!res.body.token) {
           localStorage.setItem(process.env.TOKEN_NAME, res.body.token);
           this.$router.push('admin');
         } else {
           this.badLogin = true;
         }
-      }, (errRes) => {
-        this.badLogin = true;
-      });
+      })
+      .catch((e) => console.log(e));
     },
     resetInputs: function() {
       this.badLogin = false;

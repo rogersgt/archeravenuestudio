@@ -1,21 +1,27 @@
 <style lang="scss">
-.editableSection {
-  margin: 5% auto;
+@import "../common/variables.scss";
+@import "../common/shared.scss";
+#engineerTable {
   width: 80%;
-  font-family: 'Strait', sans-serif;
+  margin: 8% auto;
+  min-height: 80vh;
 }
-
-
-
 @import "./admin.media.scss";
 </style>
 
 <template>
 <section class="page">
-  <top />
-  <div class="editableSection">
-    <h3>Admin Panel</h3>
-    <edit-engineer :key="engineer.lastName.S" v-for="engineer in engineers" :engineer="engineer"></edit-engineer>
+  <top title="Admin Panel"/>
+  <div>
+    <el-table id="engineerTable" :data="engineers">
+      <el-table-column label="First Name" prop="firstName.S"></el-table-column>>
+      <el-table-column label="Last Name" prop="lastName.S"></el-table-column>>
+      <el-table-column align="right">
+        <template slot-scope="scope">
+          <el-button size="mini" v-on:click="editEngineer(scope.row)">Edit</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
   <foot></foot>
 </section>
@@ -23,27 +29,33 @@
 
 <script>
 import top from '../common/header/header.vue';
-import editEngineer from './child.editEngineer.vue';
 import foot from '../common/footer/footer.vue';
 
 export default {
   data: function() {
     return {
-      engineers: []
+      engineers: [{
+        lastName: '',
+        firstName: '',
+        about: {},
+        clients: []
+      }]
     };
   },
   components: {
     top,
-    editEngineer,
     foot
   },
   methods: {
+    editEngineer: function(row) {
+      console.log(row);
+    },
     getengineerData: function() {
-      this.$http.get(`${process.env.API_HOST}/engineers`)
+      const res = this.$http.get(`${process.env.API_HOST}/engineers`)
       .then((res) => {
+        console.log(res);
         this.engineers = res.body.Items || [];
       }, (err) => {
-        // alert(JSON.stringify(err));
         console.log(err);
       });
     }

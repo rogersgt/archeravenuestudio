@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv-webpack": "^1.5.5",
     "element-ui": "^1.2.4",
     "envify": "^4.0.0",
