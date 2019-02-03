@@ -1,0 +1,36 @@
+@import "./variables.scss";
+
+.action-btn {
+  background-color: $blue;
+  color: white;
+  &:hover {
+    background-color: $blue2;
+    span {
+      color: white;
+    }
+  }
+}
+
+.ok-btn {
+  background-color: $okGreen;
+  color: white;
+  &:hover {
+    background-color: $green2;
+  }
+}
+
+.cancel-btn {
+  background-color: $lightGray;
+  color: white;
+  &:hover {
+    background-color: $gunSmoke;
+  }
+}
+
+.error-btn {
+  background-color: $errorRed;
+  color: white;
+  &:hover {
+    background-color: $gunSmoke;
+  }
+}

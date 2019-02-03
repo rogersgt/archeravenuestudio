@@ -24,6 +24,15 @@ a {
 }
 button {
   touch-action: manipulation;
+  border: none;
+  padding: 1%;
+  border-radius: .2rem;
+  &:active {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 }
 .bgImg {
   background-image: url('../../assets/controlroom1.jpg');

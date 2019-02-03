@@ -5,6 +5,7 @@ import VueResource from 'vue-resource';
 import ElementUI from 'element-ui';
 import $ from 'jquery';
 import FileUpload from 'v-file-upload';
+import VModal from 'vue-js-modal';
 
 // require(`${__dirname}/assets/logo.png`);
 import home from './components/home/home.vue';
@@ -21,6 +22,7 @@ Vue.use(VueResource);
 Vue.use(ElementUI);
 Vue.use(() => { window.$ = window.jQuery = $; });
 Vue.use(FileUpload);
+Vue.use(VModal);
 
 Vue.http.headers.common['x-api-key'] = process.env.API_KEY;
 
