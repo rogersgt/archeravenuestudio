@@ -14,7 +14,6 @@
 <template>
 <section class="page">
   <top title="Admin Panel"/>
-  <edit-engineer @update:engineer="handleUpdateEngineer" />
   <div>
     <el-table id="engineerTable" :data="engineers">
       <el-table-column label="First Name" prop="firstName"></el-table-column>
@@ -33,7 +32,6 @@
 <script>
 import top from '../common/header/header.vue';
 import foot from '../common/footer/footer.vue';
-import editEngineer from './editEngineer.vue';
 
 export default {
   data: function() {
@@ -47,13 +45,13 @@ export default {
     };
   },
   components: {
-    top,
-    foot,
-    editEngineer
+    // top,
+    // foot
   },
   methods: {
     editEngineer: function(row) {
-      this.$modal.show('edit-engineer', row);
+      const { lastName, firstName } = row;
+      this.$router.push({ path: `/edit-engineer/${lastName}/${firstName}` });
     },
     getengineerData: function() {
       const res = this.$http.get(`${process.env.API_HOST}/engineer`)
@@ -62,22 +60,9 @@ export default {
         console.log(this.engineers);
       })
       .catch((e) => console.log(e));
-    },
-    handleUpdateEngineer: function(e) {
-      const {
-        lastName,
-        bio = '',
-        clients = []
-        } = e;
-      this.engineers.forEach((eng, i) => {
-        if (eng.lastName === lastName) {
-          this.engineers[i].bio = bio;
-          this.engineers[i].clients = clients;
-        }
-      });
     }
   },
-  created: function() {
+  beforeMount: function() {
     this.getengineerData();
   }
 }
