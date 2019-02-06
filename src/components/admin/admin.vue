@@ -45,8 +45,8 @@ export default {
     };
   },
   components: {
-    // top,
-    // foot
+    top,
+    foot
   },
   methods: {
     editEngineer: function(row) {

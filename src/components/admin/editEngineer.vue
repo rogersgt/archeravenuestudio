@@ -4,6 +4,9 @@
 .form {
   width: 80%;
   margin: 5% auto 0 auto;
+  .action-btn {
+    margin-left: 4.5%;
+  }
   h4 {
     text-align: center;
     margin: 0;
@@ -12,6 +15,7 @@
     width: 80%;
     margin: 5%;
     padding: 3%;
+    border-radius: .2rem;
   }
   .right {
     float: right;
@@ -40,12 +44,26 @@
     margin-left: 4.5%;
   }
 }
+.green {
+  color: $okGreen;
+}
+.red {
+  color: $errorRed;
+}
+@media(max-width: 1080px) {
+  .form {
+    margin: 10% 0 0 0;
+    width: 100%;
+    padding: 0; 
+  }
+}
 </style>
 <template>
   <section class="page">
   <top title="Admin Panel"/>
   <div class="form">
     <h4>Edit {{ firstName }} {{ lastName }}</h4>
+    <h3>Bio</h3>
    <textarea name="bio" id="" cols="30" rows="10" v-model="bio"></textarea>
    
    <h3>Clients</h3>
@@ -57,6 +75,9 @@
    </ul>
    <button class="action-btn" @click="clients.push('')">Add Client +</button>
    <button class="ok-btn" @click="save">Save</button>
+   <button class="cancel-btn" @click="back">Back</button>
+   <span class="green" v-if="saved">Saved <i class="fa fa-check" aria-hidden="true"></i></span>
+   <span class="red" v-if="errored">There was an error saving your changes. Please try again later.</span>
   </div>
   <foot></foot>
 </section>
@@ -83,10 +104,15 @@ export default {
       lastName: '',
       firstName: '',
       bio: '',
-      clients: []
+      clients: [],
+      saved: false,
+      errored: false
     };
   },
   methods: {
+    back: function(e) {
+      this.$router.push({ path: '/admin' });
+    },
     getEngineer: function(lastName, firstName) {
       const { API_HOST } = process.env;
       this.$http.get(`${API_HOST}/engineer/${lastName}/${firstName}`)
@@ -107,8 +133,8 @@ export default {
       };
       const { API_HOST } = process.env;
       this.$http.put(`${API_HOST}/engineer`, engineer)
-      .then((resp) => {
-        this.setComponentData(resp.body);
+      .then(() => {
+        this.saved = true;
         return Promise.resolve();
       })
       .catch((e) => {
@@ -126,6 +152,15 @@ export default {
       this.lastName = lastName;
       this.bio = bio || '';
       this.clients = clients || [];
+    }
+  },
+  watch: {
+    'saved': function() {
+      const wait = new Promise((res) => setTimeout(res, 5000));
+      wait
+      .then(() => {
+        this.saved = false;
+      });
     }
   }
 }
