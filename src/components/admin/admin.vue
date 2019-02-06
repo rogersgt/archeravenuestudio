@@ -6,7 +6,7 @@
 #engineerTable {
   width: 80%;
   margin: 8% auto;
-  min-height: 80vh;
+  height: auto;
 }
 @import "./admin.media.scss";
 </style>
@@ -24,6 +24,8 @@
         </template>
       </el-table-column>
     </el-table>
+
+    
   </div>
   <foot></foot>
 </section>

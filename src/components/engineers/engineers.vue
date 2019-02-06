@@ -145,15 +145,13 @@
                 <img src="../../assets/kenny.jpg" alt="Kenny McWilliams" />
                 <el-collapse accordion>
                     <el-collapse-item title="About">
-                        <p>{{kenny.about.p1}}</p>
-                        <p class="italic">{{kenny.about.p2}}</p>
-                        <p>{{kenny.about.p3}}</p>
+                        <p :key="index.toString() + 'kenny-bio'" v-for="(par, index) in kenny.bio.split('\n')">{{ par }}</p>
                     </el-collapse-item>
                 </el-collapse>
                 <el-collapse accordion>
                         <el-collapse-item title="Client List" name="1">
                             (in no particular order)
-                            <div :key="client" class="listItem" v-for="client in kenny.clients">{{client}}</div>
+                            <div :key="client" class="listItem" v-for="client in kenny.clients">{{ client }}</div>
                         </el-collapse-item>
                 </el-collapse>
                 <el-collapse accordion>
@@ -167,15 +165,13 @@
                 <img src="../../assets/eric.jpg" alt="Eric McCoy" />
                 <el-collapse accordion>
                     <el-collapse-item title="About">
-                        <p>{{eric.about.p1}}</p>
-                        <p class="italic">{{eric.about.p2}}</p>
-                        <p>{{eric.about.p3}}</p>
+                        <p :key="index.toString() + 'eric-bio'" v-for="(par, index) in eric.bio.split('\n')">{{ par }}</p>
                     </el-collapse-item>
                 </el-collapse>
                 <el-collapse accordion>
                     <el-collapse-item title="Client List" name="2">
                         (in no particular order)
-                        <div class="listItem" v-for="client in eric.clients">{{client}}</div>
+                        <div class="listItem" v-for="client in eric.clients">{{ client }}</div>
                     </el-collapse-item>
                 </el-collapse>
                 <el-collapse accordion>
@@ -212,9 +208,25 @@ export default {
     },
     data: function() {
         return {
-            kenny: engData.kenny,
-            eric: engData.eric
+            kenny: {
+                bio: '',
+                clients: []
+            },
+            eric: {
+                bio: '',
+                clients: []
+            }
         };
+    },
+    beforeMount: function() {
+        const { API_HOST } = process.env;
+        this.$http.get(`${API_HOST}/engineer`)
+        .then((resp) => {
+            const engineers = resp.body;
+            this.kenny = engineers.find((e) => e.firstName === 'Kenny');
+            this.eric = engineers.find((e) => e.firstName === 'Eric');
+        })
+        .catch((e) => console.log(e));
     }
 }
 </script>

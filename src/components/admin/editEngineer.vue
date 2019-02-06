@@ -3,13 +3,15 @@
 @import "../common/shared.scss";
 .form {
   width: 80%;
-  margin: 5% auto 0 auto;
+  margin: 10% auto 0 auto;
+  font-family: 'Strait', sans-serif;
   .action-btn {
     margin-left: 4.5%;
   }
-  h4 {
+  h2 {
     text-align: center;
     margin: 0;
+    color: $lightGray;
   }
   textarea {
     width: 80%;
@@ -52,9 +54,9 @@
 }
 @media(max-width: 1080px) {
   .form {
-    margin: 10% 0 0 0;
+    margin: 18% 0 0 0;
     width: 100%;
-    padding: 0; 
+    padding: 0;
   }
 }
 </style>
@@ -62,7 +64,7 @@
   <section class="page">
   <top title="Admin Panel"/>
   <div class="form">
-    <h4>Edit {{ firstName }} {{ lastName }}</h4>
+    <h2>Edit {{ firstName }} {{ lastName }}</h2>
     <h3>Bio</h3>
    <textarea name="bio" id="" cols="30" rows="10" v-model="bio"></textarea>
    
