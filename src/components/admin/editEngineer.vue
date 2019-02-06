@@ -1,148 +1,166 @@
 <style lang="scss">
-#modal {
-  margin: 2.5%;
-  padding: 3% 0 5% 0;
-  width: 95%;
-  height: auto;
-
-  .options {
-    width: 55%;
-    padding: 0;
-    margin: 0;
-    ul {
-      margin: 2%;
-      padding: 0;
-      li {
-        width: 24%;
-        padding: 0;
-        text-align: left;
-        display: inline-block;
-        button {
-          padding: 11%;
-          font-size: 1rem;
-          font-size: .9rem;
-        }
-      }
-    }
+@import "../common/buttons.scss";
+@import "../common/shared.scss";
+.form {
+  width: 80%;
+  margin: 5% auto 0 auto;
+  .action-btn {
+    margin-left: 4.5%;
   }
-
-  .form {
+  h4 {
+    text-align: center;
+    margin: 0;
+  }
+  textarea {
+    width: 80%;
     margin: 5%;
-    padding: 0;
-    textarea {
-      overflow: scroll;
-    }
+    padding: 3%;
+    border-radius: .2rem;
+  }
+  .right {
+    float: right;
   }
   button {
-    float: right;
-    margin-right: 8%;
-    margin-bottom: 1%;
+    margin: 1%;
   }
-  .btn-cancel {
-    float: left;
-    background-color: #5c5a59;
-    color: white;
+  ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    li {
+      display: block;
+      width: auto;
+    }
   }
-  input, textarea {
-    width: 80%;
-    margin: 1% 9%;
+  input {
     padding: 1%;
-    border-radius: .1rem;
-    border: .05rem solid gray;
+    width: 50%;
   }
-  .btn-cancel, h3, h6 {
-    margin-left: 9%;
+  .clientList {
+    width: 80%;
+    margin-left: 4.5%;
+  }
+  h3 {
+    margin-left: 4.5%;
+  }
+}
+.green {
+  color: $okGreen;
+}
+.red {
+  color: $errorRed;
+}
+@media(max-width: 1080px) {
+  .form {
+    margin: 10% 0 0 0;
+    width: 100%;
+    padding: 0; 
   }
 }
 </style>
 <template>
-  <modal name="edit-engineer" @before-open="beforeOpen" :width="'50%'" :height="'auto'">
-    <div id="modal">
-      <div class="options">
-        <ul>
-          <li>
-            <button class="ok-btn" @click="save">Save</button>
-          </li>
-          <li>
-            <button class="cancel-btn" @click="$modal.close('edit-engineer')">Cancel</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="form">
-        <h3>Edit {{ firstName }} {{lastName }}</h3>
-        <h6>Bio</h6>
-
-        <textarea :model="bio"/>
-
-        <button v-if="bio.length === 0" @click="bio.push('')" class="action-btn">Add paragraph +</button>
-        <h6>Clients</h6>
-
-        <div v-for="(client, index) in clients" :key="index">
-          <input type="text" :model="clients[index]" /><button class="btn-cancel" @click="clients.splice(clients.indexOf(client), 1)">remove -</button>
-        </div>
-        <button class="action-btn" v-on:click="clients.push('')">Add client +</button>
-      </div>
-    </div>
-  </modal>
+  <section class="page">
+  <top title="Admin Panel"/>
+  <div class="form">
+    <h4>Edit {{ firstName }} {{ lastName }}</h4>
+    <h3>Bio</h3>
+   <textarea name="bio" id="" cols="30" rows="10" v-model="bio"></textarea>
+   
+   <h3>Clients</h3>
+   <ul class="clientList">
+     <li :key="index" v-for="(client, index) in clients">
+       <input v-model="clients[index]" type="text">
+       <button class="cancel-btn" @click="clients.splice(index, 1)">Remove Client -</button>
+     </li>
+   </ul>
+   <button class="action-btn" @click="clients.push('')">Add Client +</button>
+   <button class="ok-btn" @click="save">Save</button>
+   <button class="cancel-btn" @click="back">Back</button>
+   <span class="green" v-if="saved">Saved <i class="fa fa-check" aria-hidden="true"></i></span>
+   <span class="red" v-if="errored">There was an error saving your changes. Please try again later.</span>
+  </div>
+  <foot></foot>
+</section>
 </template>
 <script>
+import top from '../common/header/header.vue';
+import foot from '../common/footer/footer.vue';
+
 export default {
+  beforeMount: function() {
+    const { firstName, lastName } = this.$route.params;
+    if (!lastName || !firstName) {
+      this.$router.push('admin');
+    } else {
+      this.getEngineer(lastName, firstName);
+    }
+  },
+  components: {
+    top,
+    foot
+  },
   data: function() {
     return {
+      lastName: '',
+      firstName: '',
       bio: '',
       clients: [],
-      firstName: '',
-      lastName: ''
+      saved: false,
+      errored: false
     };
   },
   methods: {
-    beforeOpen: function(event) {
-      this.bio = event.params.bio || '';
-      this.clients = event.params.clients || [];
-      this.firstName = event.params.firstName || '';
-      this.lastName = event.params.lastName || '';
+    back: function(e) {
+      this.$router.push({ path: '/admin' });
+    },
+    getEngineer: function(lastName, firstName) {
+      const { API_HOST } = process.env;
+      this.$http.get(`${API_HOST}/engineer/${lastName}/${firstName}`)
+      .then((resp) => {
+        this.setComponentData(resp.body);
+        return Promise.resolve();
+      })
+      .catch((e) => {
+        console.log(e);
+      })
     },
     save: function() {
       const engineer = {
-        lastName: this.lastName,
         firstName: this.firstName,
+        lastName: this.lastName,
         bio: this.bio,
         clients: this.clients
       };
-      console.log(engineer);
-      // const { API_HOST } = process.env;
-      // this.$http.put(`${API_HOST}/engineer`, engineer)
-      // .then((res) => {
-      //   console.log(res);
-      //   // this.$emit('update:engineer', res.body);
-      //   // this.$modal.close('edit-engineer');
-      // })
-      // .catch((e) => {
-      //   console.log(e);
-      // });
-      // this.$emit('update:engineer', engineer);
+      const { API_HOST } = process.env;
+      this.$http.put(`${API_HOST}/engineer`, engineer)
+      .then(() => {
+        this.saved = true;
+        return Promise.resolve();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
     },
-    handleParagraphs: function() {
-      if (this.bio.length === 0) {
-        this.bio.push('');
-      } else {
-        const lastP = this.bio[this.bio.length - 1];
-        if (lastP.length === 0) {
-          this.bio.splice(this.bio.length - 1, 1);
-        } else {
-          this.bio.push('');
-        }
-      }
-    },
-    handleUpdateParagraph: function(e) {
-      const { index, value } = e;
-      this.bio[index] = value;
+    setComponentData: function(newState={}) {
+      const {
+        firstName,
+        lastName,
+        bio,
+        clients
+      } = newState;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.bio = bio || '';
+      this.clients = clients || [];
     }
   },
   watch: {
-    'bio': function(val) {
-      console.log(val);
+    'saved': function() {
+      const wait = new Promise((res) => setTimeout(res, 5000));
+      wait
+      .then(() => {
+        this.saved = false;
+      });
     }
   }
 }
